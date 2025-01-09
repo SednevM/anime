@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль Anika</title>
+    <link rel="stylesheet" href="src/css/profile.css">
+    <script src="src/JS/profile.js" defer></script>
+    <script src="src/JS/avatar.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="/src/img/logo.svg" alt="Логотип">
+                Anika
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Поиск аниме..." class="search-input">
+            </div>
+            <div class="menu-profile">
+                <nav>
+                    <ul class="profile">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index.html#season">Аниме сезона</a></li>
+                        <li><a href="index.html#catalog">Каталог</a></li>
+                    </ul>
+                </nav>
+                <div class="profile_account">
+                    <button id="profile_button" class="profile-button">
+                        <img src="" alt="">
+                    </button>
+                    <div id="account_dropdown" class="account_dropdown">
+                        <div class="inside_account">
+                            <div class="account-item">
+                                <i class="fas fa-user-circle account-icon"></i>
+                                <button onclick="location.href='profile.html';">Профиль</button>
+                            </div>
+                            <div class="account-item">
+                                <i class="fas fa-cog account-icon"></i> 
+                                <button onclick="location.href='settings.html';">Настройки</button>
+                            </div>
+                            <div class="account-item theme-switcher">
+                                <i class="fas fa-moon account-icon"></i>
+                                <button id="theme-toggle">Тёмная тема</button>
+                            </div>
+                            <div class="account-item">
+                                <i class="fas fa-sign-out-alt account-icon"></i> 
+                                <button>Выход</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="user-info-profil">
+            <div class="avatar">
+                <img src="src/img/avatar.jpg" alt="avatar">
+            </div>
+            <div class="user-description">
+                <h1 class="nickname">Kai</h1>
+                <p class="user-bio">Любитель аниме и манги</p>
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">42</span>
+                        <span class="stat-label">Смотрю</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">156</span>
+                        <span class="stat-label">Просмотрено</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">89</span>
+                        <span class="stat-label">В планах</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">12</span>
+                        <span class="stat-label">Коллекций</span>
+                    </div>
+                </div>
+                <div class="user-badges">
+                    <span class="badge"><i class="fas fa-star"></i> Топ рецензент</span>
+                    <span class="badge"><i class="fas fa-trophy"></i> Активный участник</span>
+                    <span class="badge"><i class="fas fa-heart"></i> 1000+ оценок</span>
+                </div>
+            </div>
+        </div>
+        <div class="section-selection">
+            <button class="section-button active">Смотрю</button>
+            <button class="section-button">Посмотреть</button>
+            <button class="section-button">Просмотрено</button>
+            <button class="section-button">Коллекции</button>
+        </div>
+        <div class="filter-section">
+            <div class="filter-group">
+                <div class="filter-item">
+                    <label class="filter-label">Поиск</label>
+                    <input type="text" class="filter-select" placeholder="Поиск">
+                </div>
+                <div class="filter-item">
+                    <label class="filter-label">Жанры</label>
+                    <select class="filter-select">
+                        <option value="">Выберите жанр</option>
+                        <option value="action">Боевик</option>
+                        <option value="comedy">Комедия</option>
+                        <option value="drama">Драма</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label class="filter-label">Год</label>
+                    <select class="filter-select">
+                        <option value="">Выберите год</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label class="filter-label">Сезон</label>
+                    <select class="filter-select">
+                        <option value="">Все</option>
+                        <option value="winter">Зима</option>
+                        <option value="spring">Весна</option>
+                        <option value="summer">Лето</option>
+                        <option value="fall">Осень</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <section class="anime-list">
+            <div class="anime-card container video-container" data-season="Зима 2024" data-description="Solo Leveling" data-all_description="Тип: Сериал">
+                <button class="favorite-button">
+                    <i class="far fa-heart"></i>
+                </button>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%;">8/12</div>
+                </div>
+                <img src="src/img/Solo.jpg" alt="Поднятие уровня в одиночку">
+                <video muted>
+                    <source src="src/video/solo_leveling.mp4" type="video/mp4">
+                </video>
+                <div class="anime-card-title">Поднятие уровня в одиночку</div>
+                <div class="tooltip">
+                    <div class="tooltip-header">
+                        <span>Эпизод 8 выходит через 2 дня</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: 90%;"></div>
+                        </div>
+                        <span class="rating-value">90%</span>
+                    </div>
+                    <div class="studio">A-1 Pictures</div>
+                    <div class="info">Сериал • 12 эпизодов</div>
+                    <div class="tags">
+                        <span class="tag">экшен</span>
+                        <span class="tag">фэнтези</span>
+                    </div>
+                    <div class="catalog-description">Поднятие уровня в одиночку - это аниме о...</div>
+                    <div class="user-rating">
+                        <span>Ваша оценка:</span>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="anime-card container video-container" data-season="Зима 2024" data-description="Frieren" data-all_description="Тип: Сериал">
+                <button class="favorite-button">
+                    <i class="far fa-heart"></i>
+                </button>
+                <img src="src/img/friren.jpg" alt="Провожающая в последний путь фрирен">
+                <video muted>
+                    <source src="src/video/frieren.mp4" type="video/mp4">
+                </video>
+                <div class="anime-card-title">Провожающая в последний путь фрирен</div>
+                <div class="tooltip">
+                    <div class="tooltip-header">
+                        <span>Новый эпизод</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: 95%;"></div>
+                        </div>
+                        <span class="rating-value">95%</span>
+                    </div>
+                    <div class="studio">Madhouse</div>
+                    <div class="info">Сериал • 28 эпизодов</div>
+                    <div class="tags">
+                        <span class="tag">фэнтези</span>
+                        <span class="tag">приключения</span>
+                    </div>
+                    <div class="catalog-description">Провожающая в последний путь фрирен - это аниме о...</div>
+                </div>
+            </div>
+            <div class="anime-card container video-container" data-season="Зима 2024" data-description="Chainsaw Man" data-all_description="Тип: Сериал">
+                <button class="favorite-button">
+                    <i class="far fa-heart"></i>
+                </button>
+                <img src="src/img/Chainsaw_Man.jpg" alt="Chainsaw Man">
+                <video muted>
+                    <source src="src/video/chainsaw_man.mp4" type="video/mp4">
+                </video>
+                <div class="anime-card-title">Chainsaw Man</div>
+                <div class="tooltip">
+                    <div class="tooltip-header">
+                        <span>Полная серия</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: 92%;"></div>
+                        </div>
+                        <span class="rating-value">92%</span>
+                    </div>
+                    <div class="studio">MAPPA</div>
+                    <div class="info">Сериал • 12 эпизодов</div>
+                    <div class="tags">
+                        <span class="tag">экшен</span>
+                        <span class="tag">хоррор</span>
+                    </div>
+                    <div class="catalog-description">Chainsaw Man - это аниме о...</div>
+                </div>
+            </div>
+            <div class="anime-card container video-container" data-season="Зима 2024" data-description="Tokyo Revengers" data-all_description="Тип: Сериал">
+                <button class="favorite-button">
+                    <i class="far fa-heart"></i>
+                </button>
+                <img src="src/img/Tokyo_Revengers.jpg" alt="Tokyo Revengers">
+                <video muted>
+                    <source src="src/video/tokyo_revengers.mp4" type="video/mp4">
+                </video>
+                <div class="anime-card-title">Tokyo Revengers</div>
+                <div class="tooltip">
+                    <div class="tooltip-header">
+                        <span>Новый сезон</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: 88%;"></div>
+                        </div>
+                        <span class="rating-value">88%</span>
+                    </div>
+                    <div class="studio">LIDENFILMS</div>
+                    <div class="info">Сериал • 13 эпизодов</div>
+                    <div class="tags">
+                        <span class="tag">экшен</span>
+                        <span class="tag">драма</span>
+                    </div>
+                    <div class="catalog-description">Tokyo Revengers - это аниме о...</div>
+                </div>
+            </div>
+        </section>
+        <div class="pagination">
+            <span id="page-info"></span>
+            <div id="page-numbers"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="src/img/logo.svg" alt="Anika Logo">
+                Anika
+            </div>
+            <div class="footer-links">
+                <nav>
+                    <ul>
+                        <li><a href="index.html#anons">Главная</a></li>
+                        <li><a href="index.html#season">Аниме сезона</a></li>
+                        <li><a href="index.html#catalog">Каталог</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+                <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2024 Anika. Все права защищены.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

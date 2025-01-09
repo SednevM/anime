@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки - Anika</title>
+    <link rel="stylesheet" href="src/css/settings.css">
+    <script src="src/JS/settings.js" defer></script>
+    <script src="src/JS/avatar.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="/src/img/logo.svg" alt="Логотип">
+                Anika
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Поиск аниме..." class="search-input">
+            </div>
+            <div class="menu-profile">
+                <nav>
+                    <ul class="profile">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index.html#season">Аниме сезона</a></li>
+                        <li><a href="index.html#catalog">Каталог</a></li>
+                    </ul>
+                </nav>
+                <div class="profile_account">
+                    <button id="profile_button" class="profile-button">
+                        <img src="" alt="">
+                    </button>
+                    <div id="account_dropdown" class="account_dropdown">
+                        <div class="inside_account">
+                            <div class="account-item">
+                                <i class="fas fa-user-circle account-icon"></i>
+                                <button onclick="location.href='profile.html';">Профиль</button>
+                            </div>
+                            <div class="account-item">
+                                <i class="fas fa-cog account-icon"></i> 
+                                <button onclick="location.href='settings.html';">Настройки</button>
+                            </div>
+                            <div class="account-item theme-switcher">
+                                <i class="fas fa-moon account-icon"></i>
+                                <button id="theme-toggle">Тёмная тема</button>
+                            </div>
+                            <div class="account-item">
+                                <i class="fas fa-sign-out-alt account-icon"></i> 
+                                <button>Выход</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="settings-container">
+            <h1>Настройки</h1>
+            
+            <div class="settings-section">
+                <h2>Профиль</h2>
+                <div class="settings-group">
+                    <div class="avatar-settings">
+                        <img src="src/img/avatar.jpg" alt="Аватар" class="current-avatar">
+                        <button class="change-avatar-btn">Изменить аватар</button>
+                    </div>
+                    <div class="profile-settings">
+                        <div class="form-group">
+                            <label for="username">Имя пользователя</label>
+                            <input type="text" id="username" value="Kai">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" value="example@mail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">О себе</label>
+                            <textarea id="bio">Любитель аниме и манги</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Внешний вид</h2>
+                <div class="settings-group">
+                    <div class="theme-settings">
+                        <label>Тема оформления</label>
+                        <div class="theme-options">
+                            <button class="theme-option light active">
+                                <i class="fas fa-sun"></i>
+                                Светлая
+                            </button>
+                            <button class="theme-option dark">
+                                <i class="fas fa-moon"></i>
+                                Тёмная
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Уведомления</h2>
+                <div class="settings-group">
+                    <div class="notification-settings">
+                        <div class="notification-option">
+                            <label class="toggle-label">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                                Новые серии
+                            </label>
+                        </div>
+                        <div class="notification-option">
+                            <label class="toggle-label">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                                Новости и обновления
+                            </label>
+                        </div>
+                        <div class="notification-option">
+                            <label class="toggle-label">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                                Email-рассылка
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Безопасность</h2>
+                <div class="settings-group">
+                    <div class="security-settings">
+                        <button class="change-password-btn">
+                            <i class="fas fa-key"></i>
+                            Изменить пароль
+                        </button>
+                        <button class="two-factor-btn">
+                            <i class="fas fa-shield-alt"></i>
+                            Двухфакторная аутентификация
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="save-settings-btn">Сохранить изменения</button>
+                <button class="cancel-btn">Отмена</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="src/img/logo.svg" alt="Anika Logo">
+                Anika
+            </div>
+            <div class="footer-links">
+                <nav>
+                    <ul>
+                        <li><a href="index.html#anons">Главная</a></li>
+                        <li><a href="index.html#season">Аниме сезона</a></li>
+                        <li><a href="index.html#catalog">Каталог</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-social">
+                <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+                <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2024 Anika. Все права защищены.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
