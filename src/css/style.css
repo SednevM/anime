@@ -142,6 +142,9 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .search-input {
@@ -1080,6 +1083,12 @@ anime-card:hover .tooltip.tooltip-left {
     .filter button {
         width: 130%;
         font-size: 10px;
+    }
+
+    .search-container {
+        position: static;
+        transform: none;
+        margin: 0 10px;
     }
 }
 

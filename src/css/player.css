@@ -962,7 +962,9 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 5vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .search-input {
@@ -1049,6 +1051,12 @@ nav ul li a:hover::before {
 
     header {
         height: 35px;
+    }
+
+    .search-container {
+        position: static;
+        transform: none;
+        margin: 0 10px;
     }
 }
 

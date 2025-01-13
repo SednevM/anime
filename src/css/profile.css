@@ -65,6 +65,9 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .search-input {
@@ -408,6 +411,12 @@ footer {
     .footer-links ul {
         justify-content: center;
         margin: 15px 0;
+    }
+
+    .search-container {
+        position: static;
+        transform: none;
+        margin: 0 10px;
     }
 }
 

@@ -80,7 +80,9 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 5vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .search-input {
@@ -646,6 +648,12 @@ footer {
     .save-settings-btn,
     .cancel-btn {
         width: 100%;
+    }
+
+    .search-container {
+        position: static;
+        transform: none;
+        margin: 0 10px;
     }
 }
 

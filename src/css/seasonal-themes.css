@@ -1,0 +1,329 @@
+/* Базовые переменные для всех тем */
+:root {
+    --transition-time: 0.3s;
+}
+
+.winter-theme {
+    --theme-gradient: linear-gradient(135deg, #1a2c5b 0%, #0f1f40 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --accent-color: #ff2b2b;
+    --text-color: #ffffff;
+    --border-color: rgba(255, 43, 43, 0.3);
+    --shadow-color: rgba(255, 43, 43, 0.2);
+    --badge-bg: rgba(255, 215, 0, 0.2);
+    --highlight-color: #ffd700;
+    
+    /* Дополнительные цвета для новогодней темы */
+    --christmas-red: #ff2b2b;
+    --christmas-green: #2d5a27;
+    --christmas-gold: #ffd700;
+    --snow-color: #ffffff;
+}
+
+.spring-theme {
+    --theme-gradient: linear-gradient(135deg, #43a047 0%, #1b5e20 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --accent-color: #76ff03;
+    --text-color: #f1f8e9;
+    --border-color: rgba(139, 195, 74, 0.3);
+    --shadow-color: rgba(139, 195, 74, 0.2);
+    --badge-bg: rgba(139, 195, 74, 0.2);
+    --highlight-color: #dcedc8;
+}
+
+.summer-theme {
+    --theme-gradient: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --accent-color: #40c4ff;
+    --text-color: #e1f5fe;
+    --border-color: rgba(3, 169, 244, 0.3);
+    --shadow-color: rgba(3, 169, 244, 0.2);
+    --badge-bg: rgba(3, 169, 244, 0.2);
+    --highlight-color: #b3e5fc;
+}
+
+.fall-theme {
+    --theme-gradient: linear-gradient(135deg, #5d4037 0%, #3e2723 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --accent-color: #ffd54f;
+    --text-color: #fff3e0;
+    --border-color: rgba(255, 213, 79, 0.3);
+    --shadow-color: rgba(255, 213, 79, 0.2);
+    --badge-bg: rgba(255, 213, 79, 0.2);
+    --highlight-color: #ffecb3;
+}
+
+/* Анимации для фона */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Применение тем */
+body[data-season-theme] {
+    background: var(--theme-gradient);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    color: var(--text-color);
+}
+
+/* Стили для карточек */
+body[data-season-theme] .anime-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+body[data-season-theme] .anime-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 15px var(--shadow-color);
+}
+
+/* Стили для кнопок */
+body[data-season-theme] .section-button {
+    transition: all var(--transition-time) ease;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+body[data-season-theme] .section-button.active {
+    background-color: var(--accent-color);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Стили для хедера и футера */
+body[data-season-theme] .header-content,
+body[data-season-theme] .footer-container {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    backdrop-filter: blur(10px);
+}
+
+/* Стили для ссылок */
+body[data-season-theme] a {
+    color: var(--accent-color);
+    transition: color var(--transition-time) ease;
+}
+
+body[data-season-theme] a:hover {
+    color: var(--text-color);
+}
+
+/* Стили для инпутов */
+body[data-season-theme] .search-input,
+body[data-season-theme] .filter-select {
+    border: 2px solid var(--border-color);
+    background: var(--card-bg);
+    border-radius: 8px;
+    transition: all var(--transition-time) ease;
+}
+
+body[data-season-theme] .search-input:focus,
+body[data-season-theme] .filter-select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+    outline: none;
+}
+
+/* Стили для бейджей */
+body[data-season-theme] .badge {
+    background: var(--badge-bg);
+    color: var(--accent-color);
+    border-radius: 20px;
+    padding: 4px 12px;
+    transition: all var(--transition-time) ease;
+}
+
+body[data-season-theme] .badge:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Стили для тултипов */
+body[data-season-theme] .tooltip {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    backdrop-filter: blur(10px);
+}
+
+/* Стили для прогресс-бара */
+body[data-season-theme] .progress-bar {
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+body[data-season-theme] .progress {
+    background: var(--accent-color);
+    transition: width var(--transition-time) ease;
+}
+
+/* Стили для футера */
+body[data-season-theme] .footer-container {
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+body[data-season-theme] .footer-container a {
+    color: var(--accent-color);
+    transition: color var(--transition-time) ease;
+}
+
+body[data-season-theme] .footer-container a:hover {
+    color: var(--text-color);
+}
+
+/* Стили для социальных иконок в футере */
+body[data-season-theme] .footer-social a {
+    color: var(--accent-color);
+    transition: all var(--transition-time) ease;
+}
+
+body[data-season-theme] .footer-social a:hover {
+    color: var(--text-color);
+    transform: scale(1.1);
+}
+
+/* Стили для копирайта */
+body[data-season-theme] .footer-copyright {
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Стили для логотипа в футере */
+body[data-season-theme] .footer-logo {
+    color: var(--text-color);
+}
+
+/* Обновляем стили для футера в новогодней теме */
+body[data-season-theme="winter"] .footer-container {
+    background: linear-gradient(
+        to bottom,
+        rgba(26, 44, 91, 0.98) 0%,
+        rgba(15, 31, 64, 0.98) 100%
+    );
+    border-top: 2px solid var(--christmas-gold);
+    color: var(--snow-color);
+    box-shadow: 
+        0 -4px 15px rgba(255, 215, 0, 0.1),
+        inset 0 2px 10px rgba(255, 255, 255, 0.1);
+    margin: 0;
+    padding: 20px 0;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+
+body[data-season-theme="winter"] .footer-container a {
+    color: var(--christmas-red);
+    text-shadow: 0 0 5px rgba(255, 43, 43, 0.3);
+}
+
+body[data-season-theme="winter"] .footer-container a:hover {
+    color: var(--christmas-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+body[data-season-theme="winter"] .footer-social a {
+    color: var(--christmas-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+body[data-season-theme="winter"] .footer-social a:hover {
+    color: var(--christmas-red);
+    transform: scale(1.2) rotate(10deg);
+    text-shadow: 
+        0 0 10px rgba(255, 43, 43, 0.5),
+        0 0 20px rgba(255, 43, 43, 0.3);
+}
+
+body[data-season-theme="winter"] .footer-logo {
+    color: var(--christmas-gold);
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.3),
+        0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+body[data-season-theme="winter"] .footer-logo img {
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+}
+
+body[data-season-theme="winter"] .footer-links a {
+    color: var(--snow-color);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+body[data-season-theme="winter"] .footer-links a:hover {
+    color: var(--christmas-gold);
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.5),
+        0 0 20px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+body[data-season-theme="winter"] .footer-copyright {
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Обновляем стили для кнопок */
+body[data-season-theme="winter"] .section-button {
+    background: linear-gradient(
+        45deg,
+        var(--christmas-red) 0%,
+        #ff4444 100%
+    );
+    color: white;
+    border: none;
+    box-shadow: 0 2px 8px rgba(255, 43, 43, 0.3);
+}
+
+body[data-season-theme="winter"] .section-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 43, 43, 0.4);
+}
+
+body[data-season-theme="winter"] .section-button.active {
+    background: linear-gradient(
+        45deg,
+        var(--christmas-gold) 0%,
+        #ffd700 100%
+    );
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Стили для основного контейнера */
+body[data-season-theme="winter"] {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Стили для main контента */
+body[data-season-theme="winter"] main {
+    flex: 1 0 auto;
+}
+
+/* Стили для footer */
+body[data-season-theme="winter"] footer {
+    flex-shrink: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+} 
