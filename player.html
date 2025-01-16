@@ -57,172 +57,69 @@
         </div>
     </header>
 
-    <main class="player-container">
-        <div class="anime-details">
-            <div class="anime-poster">
-                <img src="" alt="Постер аниме" class="poster-image">
-            </div>
-            <div class="info-section">
-                <h2>Информация</h2>
-                <div class="info-content">
-                    <p><strong>Студия:</strong> <span class="studio-name">Studio Name</span></p>
-                    <p><strong>Год выпуска:</strong> <span class="release-year">2024</span></p>
-                    <p><strong>Жанры:</strong> <span class="genres">Экшен, Приключения, Фэнтези</span></p>
-                    <p><strong>Статус:</strong> <span class="status">Онгоинг</span></p>
-                    <p><strong>Рейтинг:</strong> <span class="rating">8.5/10</span></p>
+    <main>
+        <div class="background-image"></div>
+        <div class="content-container">
+            <div class="anime-details">
+                <div class="anime-poster">
+                    <img src="src/img/tokyo.jpg" alt="Tokyo Ghoul" class="poster-image">
                 </div>
             </div>
-            <div class="description-section">
-                <h2>Описание</h2>
-                <p class="anime-description">
-                    Здесь будет описание аниме...
-                </p>
-            </div>
-        </div>
-        <div class="video-info">
-            <h1 class="anime-title">Название аниме</h1>
-            <div class="episode-info">
-                <span class="current-episode">Эпизод 1</span>
-                <span class="episode-title">Название эпизода</span>
-            </div>
-        </div>
-        <div class="player-wrapper">
-            <div class="video-player">
-                <video id="anime-player" preload="metadata">
-                    <source src="" type="video/mp4">
-                    Ваш браузер не поддерживает видео.
-                </video>
-                <div class="player-controls">
-                    <div class="progress-bar">
-                        <div class="progress"></div>
+
+            <div class="video-info">
+                <h1 class="anime-title">Tokyo Ghoul</h1>
+                <div class="episode-info">
+                    <span class="current-episode">Серия 1</span>
+                    <span class="episode-title">Трагедия</span>
+                </div>
+                <div class="rating-section">
+                    <div class="rating">
+                        <span class="rating-value">4.0</span>
                     </div>
-                    <div class="controls-buttons">
-                        <button class="play-button">
-                            <i class="fas fa-play"></i>
-                        </button>
-                        <div class="volume-control">
-                            <button class="volume-btn">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
-                            <input type="range" class="volume-slider" min="0" max="100" value="100">
-                        </div>
-                        <div class="time-display">
-                            <span class="current-time">0:00</span>
-                            <span>/</span>
-                            <span class="total-time">0:00</span>
-                        </div>
-                        <button class="fullscreen-btn">
-                            <i class="fas fa-expand"></i>
-                        </button>
+                    <div class="tags">
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="episode-list">
-            <h2>Список эпизодов</h2>
-            <div class="episodes">
-                <button class="episode active" data-video=".src/episode/friren/o" data-episode="1">Эпизод 1</button>
-                <button class="episode" data-video="src/video/episode2.mp4" data-episode="2">Эпизод 2</button>
-                <button class="episode" data-video="src/video/episode3.mp4" data-episode="3">Эпизод 3</button>
-                <button class="episode" data-video="src/video/episode4.mp4" data-episode="4">Эпизод 4</button>
-                <button class="episode" data-video="src/video/episode5.mp4" data-episode="5">Эпизод 5</button>
-                <button class="episode" data-video="src/video/episode6.mp4" data-episode="6">Эпизод 6</button>
-                <button class="episode" data-video="src/video/episode7.mp4" data-episode="7">Эпизод 7</button>
-                <button class="episode" data-video="src/video/episode8.mp4" data-episode="8">Эпизод 8</button>
-                <button class="episode" data-video="src/video/episode9.mp4" data-episode="9">Эпизод 9</button>
-                <button class="episode" data-video="src/video/episode10.mp4" data-episode="10">Эпизод 10</button>
-                <button class="episode" data-video="src/video/episode11.mp4" data-episode="11">Эпизод 11</button>
-                <button class="episode" data-video="src/video/episode12.mp4" data-episode="12">Эпизод 12</button>
-            </div>
-        </div>
-
-        <div class="comments-section">
-            <h2>Комментарии</h2>
-            
-            <div class="comment-form">
-                <div class="user-avatar">
-                    <img src="src/img/avatar.jpg" alt="Аватар пользователя">
-                </div>
-                <div class="comment-input-wrapper">
-                    <textarea placeholder="Написать комментарий..." class="comment-input"></textarea>
-                    <button class="send-comment">
-                        <i class="fas fa-paper-plane"></i>
-                        Отправить
+                <div class="control-buttons">
+                    <button class="control-btn watching">
+                        <i class="fas fa-play"></i>
+                        Смотреть
+                    </button>
+                    <button class="control-btn review">
+                        <i class="fas fa-star"></i>
+                        Отзыв
+                    </button>
+                    <button class="control-btn share">
+                        <i class="fas fa-share"></i>
+                        Поделиться
                     </button>
                 </div>
-            </div>
-
-            <div class="comments-list">
-                <div class="comment">
-                    <div class="comment-avatar">
-                        <img src="src/img/avatar.jpg" alt="Аватар пользователя">
-                    </div>
-                    <div class="comment-content">
-                        <div class="comment-header">
-                            <span class="comment-author">Пользователь</span>
-                            <span class="comment-date">2 часа назад</span>
+                <div class="authors-section">
+                    <h2>Авторы</h2>
+                    <div class="authors-list">
+                        <div class="author">
+                            <img src="src/img/author1.jpg" alt="Автор 1" class="author-avatar">
                         </div>
-                        <p class="comment-text">Отличная серия! С нетерпением жду продолжения.</p>
-                        <div class="comment-actions">
-                            <button class="like-button">
-                                <i class="far fa-heart"></i>
-                                <span>12</span>
-                            </button>
-                            <button class="reply-button">
-                                <i class="far fa-comment"></i>
-                                Ответить
-                            </button>
+                        <div class="author">
+                            <img src="src/img/author2.jpg" alt="Автор 2" class="author-avatar">
+                        </div>
+                        <div class="author">
+                            <img src="src/img/author3.jpg" alt="Автор 3" class="author-avatar">
+                        </div>
+                        <div class="author">
+                            <div class="author-more">+2</div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="comment">
-                    <div class="comment-avatar">
-                        <img src="src/img/avatar.jpg" alt="Аватар пользователя">
-                    </div>
-                    <div class="comment-content">
-                        <div class="comment-header">
-                            <span class="comment-author">Пользователь</span>
-                            <span class="comment-date">1 день назад</span>
-                        </div>
-                        <p class="comment-text">Анимация в этой серии просто потрясающая!</p>
-                        <div class="comment-actions">
-                            <button class="like-button active">
-                                <i class="fas fa-heart"></i>
-                                <span>28</span>
-                            </button>
-                            <button class="reply-button">
-                                <i class="far fa-comment"></i>
-                                Ответить
-                            </button>
-                        </div>
-
-                        <div class="comment-replies">
-                            <div class="comment reply">
-                                <div class="comment-avatar">
-                                    <img src="src/img/avatar.jpg" alt="Аватар пользователя">
-                                </div>
-                                <div class="comment-content">
-                                    <div class="comment-header">
-                                        <span class="comment-author">Пользователь</span>
-                                        <span class="comment-date">20 часов назад</span>
-                                    </div>
-                                    <p class="comment-text">Полностью согласен! Особенно сцена битвы.</p>
-                                    <div class="comment-actions">
-                                        <button class="like-button">
-                                            <i class="far fa-heart"></i>
-                                            <span>5</span>
-                                        </button>
-                                        <button class="reply-button">
-                                            <i class="far fa-comment"></i>
-                                            Ответить
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="player-container">
+            <div class="player-wrapper">
+                <div class="video-player">
+                    <video id="anime-player" controls>
+                        <source src="" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
                 </div>
             </div>
         </div>

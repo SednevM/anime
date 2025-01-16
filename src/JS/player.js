@@ -1,6 +1,20 @@
 // Получаем параметры из URL
 const urlParams = new URLSearchParams(window.location.search);
 
+// Выводим все параметры URL для отладки
+console.log('Все параметры URL:', {
+    title: urlParams.get('title'),
+    studio: urlParams.get('studio'),
+    info: urlParams.get('info'),
+    description: urlParams.get('description'),
+    rating: urlParams.get('rating'),
+    genres: urlParams.get('genres'),
+    videoSrc: urlParams.get('videoSrc'),
+    posterSrc: urlParams.get('posterSrc'),
+    episodes: urlParams.get('episodes'),
+    background: urlParams.get('background')
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // Инициализация элементов управления
     const elements = {
@@ -19,35 +33,142 @@ document.addEventListener('DOMContentLoaded', () => {
         accountDropdown: document.querySelector('.account_dropdown'),
         posterImage: document.querySelector('.anime-poster img'),
         animeTitle: document.querySelector('.anime-title'),
-        studioName: document.querySelector('.studio-name'),
-        animeDescription: document.querySelector('.anime-description'),
-        rating: document.querySelector('.rating'),
-        genres: document.querySelector('.genres'),
+        studioName: document.querySelector('.studio'),
+        animeDescription: document.querySelector('.description'),
+        rating: document.querySelector('.rating-value'),
+        tags: document.querySelector('.tags'),
         status: document.querySelector('.status'),
         info: document.querySelector('.info'),
         infoContent: document.querySelector('.info-content'),
-        videoSource: document.querySelector('#anime-player source')
+        videoSource: document.querySelector('#anime-player source'),
+        backgroundImage: document.querySelector('.background-image')
     };
 
     // Проверяем наличие элементов перед установкой значений
     const animeData = {
-        title: urlParams.get('title') || 'Название аниме',
-        studio: urlParams.get('studio') || 'Studio Name',
-        description: urlParams.get('description') || 'Описание отсутствует',
-        rating: urlParams.get('rating') || '0/10',
-        genres: urlParams.get('genres')?.replace(',', ', ') || 'Жанры не указаны',
-        status: urlParams.get('status') || 'Статус неизвестен',
-        info: urlParams.get('info') || 'Информация отсутствует'
+        title: urlParams.get('title'),
+        studio: urlParams.get('studio'),
+        info: urlParams.get('info'),
+        description: urlParams.get('description'),
+        rating: urlParams.get('rating'),
+        genres: urlParams.get('genres')?.split(',').filter(Boolean) || [],
+        videoSrc: urlParams.get('videoSrc'),
+        posterSrc: urlParams.get('posterSrc'),
+        episodes: urlParams.get('episodes'),
+        background: urlParams.get('background')
     };
+
+    console.log('Полученные данные:', {
+        animeData,
+        elements: {
+            tags: !!elements.tags,
+            animeTitle: !!elements.animeTitle,
+            studioName: !!elements.studioName,
+            animeDescription: !!elements.animeDescription,
+            rating: !!elements.rating
+        }
+    });
+
+    // Добавляем только жанры
+    if (elements.tags) {
+        const genresContainer = document.createElement('div');
+        genresContainer.className = 'genres-container';
+        
+        if (animeData.genres && animeData.genres.length > 0) {
+            genresContainer.innerHTML = animeData.genres
+                .filter(genre => genre && genre.trim())
+                .map(genre => `<span class="tag">${genre.trim()}</span>`)
+                .join('');
+            console.log('Создан контейнер жанров:', genresContainer.outerHTML);
+        }
+
+        elements.tags.innerHTML = '';
+        elements.tags.appendChild(genresContainer);
+        console.log('Итоговый HTML тегов:', elements.tags.outerHTML);
+    } else {
+        console.log('Элемент tags не найден в DOM');
+    }
+
+    console.log('URL параметры:', Object.fromEntries(urlParams.entries()));
+    console.log('Жанры из URL:', urlParams.get('genres'));
+
+    console.log('Данные аниме:', animeData);
+    console.log('Добавляем жанры:', animeData.genres);
 
     // Безопасная установка значений
     if (elements.animeTitle) elements.animeTitle.textContent = animeData.title;
     if (elements.studioName) elements.studioName.textContent = animeData.studio;
     if (elements.animeDescription) elements.animeDescription.textContent = animeData.description;
     if (elements.rating) elements.rating.textContent = animeData.rating;
-    if (elements.genres) elements.genres.textContent = animeData.genres;
+    
+    // Обновляем информацию об эпизодах
+    const episodeInfo = document.querySelector('.episode-info');
+    if (episodeInfo && animeData.info) {
+        episodeInfo.innerHTML = `<span class="current-episode">${animeData.info}</span>`;
+    }
+    
+    // Установка тегов
+    if (elements.tags && animeData.genres && animeData.genres.length > 0) {
+        console.log('Добавляем жанры:', animeData.genres);
+        elements.tags.innerHTML = animeData.genres
+            .filter(genre => genre && genre.trim())
+            .map(genre => `<span class="tag">${genre.trim()}</span>`)
+            .join('');
+    } else {
+        console.log('Не удалось добавить жанры:', {
+            hasTagsElement: !!elements.tags,
+            genres: animeData.genres,
+            genresLength: animeData.genres?.length
+        });
+    }
+
     if (elements.status) elements.status.textContent = animeData.status;
     if (elements.info) elements.info.textContent = animeData.info;
+
+    // Установка фонового изображения
+    const backgroundImage = document.querySelector('.background-image');
+    const backgroundUrl = urlParams.get('background');
+    
+    console.log('Данные фона:', {
+        backgroundElement: !!backgroundImage,
+        backgroundUrl: backgroundUrl,
+        allParams: Object.fromEntries(urlParams.entries())
+    });
+    
+    if (backgroundImage && backgroundUrl) {
+        console.log('Устанавливаем фоновое изображение:', backgroundUrl);
+        // Используем путь как есть, так как он уже содержит src/img/
+        backgroundImage.style.backgroundImage = `url('${backgroundUrl}')`;
+    } else {
+        console.log('Не удалось установить фоновое изображение:', {
+            hasBackgroundElement: !!backgroundImage,
+            backgroundUrl: backgroundUrl
+        });
+    }
+
+    // Обновляем содержимое info-content
+    if (elements.infoContent && animeData.genres) {
+        elements.infoContent.innerHTML = `
+            <p><strong>Студия:</strong> <span>${animeData.studio}</span></p>
+            <p><strong>Тип:</strong> <span>${animeData.info}</span></p>
+            <p><strong>Рейтинг:</strong> <span>${animeData.rating}</span></p>
+            <p><strong>Жанры:</strong> <span>${animeData.genres.join(', ')}</span></p>
+            <p><strong>Статус:</strong> <span>${animeData.status || 'Онгоинг'}</span></p>
+        `;
+    }
+
+    // Обработчики событий для видеоплеера
+    if (elements.video) {
+        elements.video.addEventListener('loadedmetadata', () => {
+            if (elements.duration) elements.duration.textContent = formatTime(elements.video.duration);
+            if (elements.progressBar) elements.progressBar.max = Math.floor(elements.video.duration);
+        });
+
+        elements.video.addEventListener('timeupdate', () => {
+            if (elements.currentTime) elements.currentTime.textContent = formatTime(elements.video.currentTime);
+            if (elements.progressBar) elements.progressBar.value = Math.floor(elements.video.currentTime);
+        });
+    }
 
     // Загрузка постера
     const posterUrl = urlParams.get('poster');
@@ -69,17 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elements.posterImage) {
             elements.posterImage.src = '/src/img/avatar.jpg';
         }
-    }
-
-    // Обновляем содержимое info-content
-    if (elements.infoContent) {
-        elements.infoContent.innerHTML = `
-            <p><strong>Студия:</strong> <span>${animeData.studio}</span></p>
-            <p><strong>Тип:</strong> <span>${animeData.info}</span></p>
-            <p><strong>Рейтинг:</strong> <span>${animeData.rating}</span></p>
-            <p><strong>Жанры:</strong> <span>${animeData.genres}</span></p>
-            <p><strong>Статус:</strong> <span>${animeData.status}</span></p>
-        `;
     }
 
     // Установка источника видео
@@ -172,74 +282,75 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${minutes}:${seconds.toString().padStart(2, '0')}`;
     }
 
-    // Обработчики событий для видеоплеера
-    elements.video.addEventListener('loadedmetadata', () => {
-        elements.duration.textContent = formatTime(elements.video.duration);
-        elements.progressBar.max = Math.floor(elements.video.duration);
-    });
-
-    elements.video.addEventListener('timeupdate', () => {
-        elements.currentTime.textContent = formatTime(elements.video.currentTime);
-        elements.progressBar.value = Math.floor(elements.video.currentTime);
-    });
-
     // Воспроизведение/пауза
-    elements.playButton.addEventListener('click', () => {
-        if (elements.video.paused) {
-            elements.video.play();
-            elements.playButton.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-            elements.video.pause();
-            elements.playButton.innerHTML = '<i class="fas fa-play"></i>';
-        }
-    });
+    if (elements.playButton) {
+        elements.playButton.addEventListener('click', () => {
+            if (elements.video.paused) {
+                elements.video.play();
+                elements.playButton.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                elements.video.pause();
+                elements.playButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+    }
 
     // Управление звуком
-    elements.volumeButton.addEventListener('click', () => {
-        elements.video.muted = !elements.video.muted;
-        elements.volumeButton.innerHTML = elements.video.muted ? 
-            '<i class="fas fa-volume-mute"></i>' : 
-            '<i class="fas fa-volume-up"></i>';
-        elements.volumeSlider.value = elements.video.muted ? 0 : elements.video.volume * 100;
-    });
+    if (elements.volumeButton && elements.volumeSlider) {
+        elements.volumeButton.addEventListener('click', () => {
+            if (elements.video) {
+                elements.video.muted = !elements.video.muted;
+                elements.volumeButton.innerHTML = elements.video.muted ? 
+                    '<i class="fas fa-volume-mute"></i>' : 
+                    '<i class="fas fa-volume-up"></i>';
+                elements.volumeSlider.value = elements.video.muted ? 0 : elements.video.volume * 100;
+            }
+        });
 
-    elements.volumeSlider.addEventListener('input', (e) => {
-        const value = e.target.value;
-        elements.video.volume = value / 100;
-        elements.video.muted = value === 0;
-        elements.volumeButton.innerHTML = value === 0 ? 
-            '<i class="fas fa-volume-mute"></i>' : 
-            '<i class="fas fa-volume-up"></i>';
-    });
+        elements.volumeSlider.addEventListener('input', (e) => {
+            if (elements.video) {
+                const value = e.target.value;
+                elements.video.volume = value / 100;
+                elements.video.muted = value === 0;
+                elements.volumeButton.innerHTML = value === 0 ? 
+                    '<i class="fas fa-volume-mute"></i>' : 
+                    '<i class="fas fa-volume-up"></i>';
+            }
+        });
+    }
 
     // Прогресс-бар
-    elements.progressBar.addEventListener('input', (e) => {
-        const time = e.target.value;
-        elements.video.currentTime = time;
-    });
+    if (elements.progressBar && elements.video) {
+        elements.progressBar.addEventListener('input', (e) => {
+            const time = e.target.value;
+            elements.video.currentTime = time;
+        });
+    }
 
     // Полноэкранный режим
-    elements.fullscreenButton.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-            if (elements.playerContainer.requestFullscreen) {
-                elements.playerContainer.requestFullscreen();
-            } else if (elements.playerContainer.webkitRequestFullscreen) {
-                elements.playerContainer.webkitRequestFullscreen();
-            } else if (elements.playerContainer.msRequestFullscreen) {
-                elements.playerContainer.msRequestFullscreen();
+    if (elements.fullscreenButton && elements.playerContainer) {
+        elements.fullscreenButton.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                if (elements.playerContainer.requestFullscreen) {
+                    elements.playerContainer.requestFullscreen();
+                } else if (elements.playerContainer.webkitRequestFullscreen) {
+                    elements.playerContainer.webkitRequestFullscreen();
+                } else if (elements.playerContainer.msRequestFullscreen) {
+                    elements.playerContainer.msRequestFullscreen();
+                }
+                elements.fullscreenButton.innerHTML = '<i class="fas fa-compress"></i>';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                elements.fullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
             }
-            elements.fullscreenButton.innerHTML = '<i class="fas fa-compress"></i>';
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
-            elements.fullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
-        }
-    });
+        });
+    }
 
     // Показ/скрытие элементов управления
     let controlsTimeout;
@@ -247,12 +358,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouseStopTimeout;
 
     function showControls() {
-        elements.controls.style.opacity = '1';
-        clearTimeout(controlsTimeout);
+        if (elements.controls) {
+            elements.controls.style.opacity = '1';
+            clearTimeout(controlsTimeout);
+        }
     }
 
     function hideControls() {
-        if (!elements.video.paused) {
+        if (elements.controls && elements.video && !elements.video.paused) {
             elements.controls.style.opacity = '0';
         }
     }
@@ -264,18 +377,21 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(mouseStopTimeout);
         mouseStopTimeout = setTimeout(() => {
             isMouseMoving = false;
-            if (!elements.video.paused) {
+            if (elements.video && !elements.video.paused) {
                 controlsTimeout = setTimeout(hideControls, 3000);
             }
         }, 100);
     }
 
-    elements.playerContainer.addEventListener('mousemove', handleMouseMove);
-    elements.playerContainer.addEventListener('mouseenter', showControls);
-    elements.controls.addEventListener('mouseenter', () => {
-        clearTimeout(controlsTimeout);
-        showControls();
-    });
+    // Добавляем обработчики только если существуют необходимые элементы
+    if (elements.playerContainer && elements.controls) {
+        elements.playerContainer.addEventListener('mousemove', handleMouseMove);
+        elements.playerContainer.addEventListener('mouseenter', showControls);
+        elements.controls.addEventListener('mouseenter', () => {
+            clearTimeout(controlsTimeout);
+            showControls();
+        });
+    }
 
     // Обработчик изменения полноэкранного режима
     document.addEventListener('fullscreenchange', () => {
@@ -444,4 +560,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Вызываем функцию при загрузке страницы
     document.addEventListener('DOMContentLoaded', displayAnimeInfo);
+
+    // Обновляем кнопки управления
+    const controlButtons = document.querySelector('.control-buttons');
+    if (controlButtons) {
+        controlButtons.innerHTML = `
+            <button class="control-btn watching">
+                <i class="fas fa-play"></i>
+                Смотреть
+            </button>
+            <button class="control-btn review">
+                <i class="fas fa-star"></i>
+                Отзыв
+            </button>
+            <button class="control-btn share">
+                <i class="fas fa-share"></i>
+                Поделиться
+            </button>
+        `;
+
+        // Добавляем обработчик для кнопки "Смотреть"
+        const watchButton = controlButtons.querySelector('.watching');
+        if (watchButton) {
+            watchButton.addEventListener('click', () => {
+                const playerContainer = document.querySelector('.player-container');
+                if (playerContainer) {
+                    playerContainer.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            });
+        }
+    }
+
+    // Обновляем заголовок раздела авторов
+    const authorsTitle = document.querySelector('.authors-section h2');
+    if (authorsTitle) {
+        authorsTitle.textContent = 'Авторы';
+    }
 }); 

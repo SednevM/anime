@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const info = card.querySelector('.info').textContent;
             const description = card.querySelector('.catalog-description').textContent;
             const rating = card.querySelector('.rating-value').textContent;
-            const genres = Array.from(card.querySelectorAll('.tag'))
+            const tags = Array.from(card.querySelectorAll('.tag'))
                 .map(tag => tag.textContent)
                 .join(',');
             const status = card.querySelector('.tooltip-header span').textContent;
@@ -155,10 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 info: info,
                 description: description,
                 rating: rating,
-                genres: genres,
+                tags: tags,
                 status: status,
-                video: videoSrc,
-                poster: posterSrc
+                videoSrc: videoSrc,
+                posterSrc: posterSrc
             });
 
             // Переходим на страницу плеера

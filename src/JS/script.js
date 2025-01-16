@@ -5,16 +5,34 @@ document.querySelectorAll('.anime-card').forEach(card => {
         const studio = this.querySelector('.studio').textContent;
         const info = this.querySelector('.info').textContent;
         const description = this.querySelector('.catalog-description').textContent;
-        const rating = this.querySelector('.rating-value').textContent;
-        const tags = Array.from(this.querySelectorAll('.tag')).map(tag => tag.textContent).join(',');
+        const rating = this.querySelector('.rating-value').textContent.replace('/5.0', '').trim() + '%';
+        const genres = Array.from(this.querySelectorAll('.tag')).map(tag => tag.textContent);
+        
+        console.log('Данные из карточки:', {
+            title,
+            studio,
+            info,
+            description,
+            rating,
+            genres
+        });
+        
         const videoSrc = this.querySelector('video source').src;
         const posterSrc = this.querySelector('img').src;
+        const background = this.dataset.background;
+        
+        console.log('Данные для фона:', {
+            dataBackground: this.dataset.background,
+            posterSrc: posterSrc,
+            background: background
+        });
         
         const episodesMatch = info.match(/(\d+)\s+эпизод/);
         const totalEpisodes = episodesMatch ? episodesMatch[1] : '1';
         
-        const url = `player.html?title=${encodeURIComponent(title)}&studio=${encodeURIComponent(studio)}&info=${encodeURIComponent(info)}&description=${encodeURIComponent(description)}&rating=${encodeURIComponent(rating)}&tags=${encodeURIComponent(tags)}&videoSrc=${encodeURIComponent(videoSrc)}&posterSrc=${encodeURIComponent(posterSrc)}&episodes=${encodeURIComponent(totalEpisodes)}`;
+        const url = `player.html?title=${encodeURIComponent(title)}&studio=${encodeURIComponent(studio)}&info=${encodeURIComponent(info)}&description=${encodeURIComponent(description)}&rating=${encodeURIComponent(rating)}&genres=${encodeURIComponent(genres.join(','))}&videoSrc=${encodeURIComponent(videoSrc)}&posterSrc=${encodeURIComponent(posterSrc)}&episodes=${encodeURIComponent(totalEpisodes)}&background=${encodeURIComponent(background)}`;
         
+        console.log('Сформированный URL:', url);
         window.location.href = url;
     });
 });
