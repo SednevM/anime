@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c5a27e47-e5c6-4d3b-8817-c9f236d5a02d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JS/filters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/JS/filters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.html" beforeDir="false" afterPath="$PROJECT_DIR$/player.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/settings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/player.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/player.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/img/dandan.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/dandan.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,21 +18,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Matvej-Sednev"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Matvej-Sednev&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Matvej-Sednev/anime.git",
-    "accountId": "342082b3-c698-4175-bc2c-021fe3bd756c"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Matvej-Sednev/anime.git&quot;,
+    &quot;accountId&quot;: &quot;342082b3-c698-4175-bc2c-021fe3bd756c&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2pyrjaOlu32JB7Q1sI7a0l5fNWI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -37,8 +43,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/matve/OneDrive/Рабочий стол/anime-review-site-main/anime",
     "nodejs_package_manager_path": "npm",
@@ -62,6 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1733749291536</updated>
       <workItem from="1733749292904" duration="438000" />
+      <workItem from="1737107303593" duration="45000" />
     </task>
     <servers />
   </component>

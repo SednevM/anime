@@ -5,35 +5,34 @@ document.querySelectorAll('.anime-card').forEach(card => {
         const studio = this.querySelector('.studio').textContent;
         const info = this.querySelector('.info').textContent;
         const description = this.querySelector('.catalog-description').textContent;
-        const rating = this.querySelector('.rating-value').textContent.replace('/5.0', '').trim() + '%';
+        const rating = this.querySelector('.rating-value').textContent;
         const genres = Array.from(this.querySelectorAll('.tag')).map(tag => tag.textContent);
         
-        console.log('Данные из карточки:', {
-            title,
-            studio,
-            info,
-            description,
-            rating,
-            genres
-        });
+        // Получаем источник видео и постера
+        const videoSrc = this.querySelector('video source')?.src || '';
+        const posterSrc = this.querySelector('img')?.src || '';
+        const background = this.dataset.background || posterSrc;
         
-        const videoSrc = this.querySelector('video source').src;
-        const posterSrc = this.querySelector('img').src;
-        const background = this.dataset.background;
-        
-        console.log('Данные для фона:', {
-            dataBackground: this.dataset.background,
-            posterSrc: posterSrc,
-            background: background
-        });
-        
+        // Получаем количество эпизодов из информации
         const episodesMatch = info.match(/(\d+)\s+эпизод/);
         const totalEpisodes = episodesMatch ? episodesMatch[1] : '1';
         
-        const url = `player.html?title=${encodeURIComponent(title)}&studio=${encodeURIComponent(studio)}&info=${encodeURIComponent(info)}&description=${encodeURIComponent(description)}&rating=${encodeURIComponent(rating)}&genres=${encodeURIComponent(genres.join(','))}&videoSrc=${encodeURIComponent(videoSrc)}&posterSrc=${encodeURIComponent(posterSrc)}&episodes=${encodeURIComponent(totalEpisodes)}&background=${encodeURIComponent(background)}`;
+        // Формируем URL с параметрами
+        const params = new URLSearchParams({
+            title: title,
+            studio: studio,
+            info: info,
+            description: description,
+            rating: rating,
+            genres: genres.join(','),
+            videoSrc: videoSrc,
+            posterSrc: posterSrc,
+            episodes: totalEpisodes,
+            background: background
+        });
         
-        console.log('Сформированный URL:', url);
-        window.location.href = url;
+        // Переходим на страницу плеера
+        window.location.href = `player.html?${params.toString()}`;
     });
 });
 

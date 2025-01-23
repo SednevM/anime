@@ -391,39 +391,60 @@ document.querySelectorAll('.dropdown-item').forEach(item => {
     // window.addEventListener('scroll', loadMoreItems);
 //});
 
-document.addEventListener('DOMContentLoaded', function() {
-    const allCards = document.querySelectorAll('.anime-card');
+// Функция для позиционирования тултипа
+function positionTooltip(card) {
+    const tooltip = card.querySelector('.tooltip');
+    if (!tooltip) return;
 
-    allCards.forEach(card => {
-        const tooltip = card.querySelector('.tooltip');
-        if(tooltip){
-            card.addEventListener('mouseenter', () => {
-            tooltip.style.display = 'block';
-             });
-         card.addEventListener('mouseleave', () => {
-           tooltip.style.display = 'none';
-        });
-        } else {
-            console.error('Tooltip не найден для этой карточки');
-        }
+    const cardRect = card.getBoundingClientRect();
+    const tooltipWidth = 350;
+    const windowWidth = document.documentElement.clientWidth;
+
+    // Сбрасываем стили
+    tooltip.style.left = '';
+    tooltip.style.right = '';
+    tooltip.style.top = '50%';
+    tooltip.style.transform = 'translateY(-50%)';
+
+    // Проверяем пространство справа
+    if (cardRect.right + tooltipWidth + 20 <= windowWidth) {
+        tooltip.style.left = '105%';
+        tooltip.style.right = 'auto';
+    }
+    // Проверяем пространство слева
+    else if (cardRect.left - tooltipWidth - 20 >= 0) {
+        tooltip.style.left = 'auto';
+        tooltip.style.right = '105%';
+    }
+    // Размещаем снизу
+    else {
+        tooltip.style.left = '50%';
+        tooltip.style.top = '100%';
+        tooltip.style.transform = 'translateX(-50%)';
+        tooltip.style.marginTop = '10px';
+    }
+}
+
+// Добавляем обработчики событий
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.anime-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => positionTooltip(card));
+        card.addEventListener('mousemove', () => positionTooltip(card));
     });
 
-    function updateTooltipPosition() {
-        const tooltips = document.querySelectorAll('.tooltip');
-        tooltips.forEach(tooltip => {
-            const card = tooltip.closest('.anime-card');
-            if(card){
-                const cardRect = card.getBoundingClientRect();
-                const tooltipWidth = tooltip.offsetWidth;
-                if (cardRect.right + tooltipWidth > window.innerWidth) {
-                    tooltip.classList.add('tooltip-left');
-                } else {
-                    tooltip.classList.remove('tooltip-left');
-                }
-            }
-        });
-    }
+    window.addEventListener('resize', () => {
+        const hoveredCard = document.querySelector('.anime-card:hover');
+        if (hoveredCard) positionTooltip(hoveredCard);
+    });
+
+    window.addEventListener('scroll', () => {
+        const hoveredCard = document.querySelector('.anime-card:hover');
+        if (hoveredCard) positionTooltip(hoveredCard);
+    });
 });
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -663,6 +684,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = card.querySelector('.anime-card-title').textContent;
             const studio = card.querySelector('.studio').textContent;
             const info = card.querySelector('.info').textContent;
+            
+            // Разбираем строку info на тип и количество эпизодов
+            const [type, episodesText] = info.split('•').map(text => text.trim());
+            const episodes = parseInt(episodesText?.match(/\d+/)?.[0]) || 1;
+            
             const description = card.querySelector('.catalog-description').textContent;
             const rating = card.querySelector('.rating-value').textContent;
             const genres = Array.from(card.querySelectorAll('.tag'))
@@ -671,32 +697,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const status = card.querySelector('.tooltip-header span').textContent;
             const videoSrc = card.querySelector('video source').getAttribute('src');
             
-            // Получаем полный путь к изображению
             const posterImg = card.querySelector('img');
-            console.log('Найденное изображение:', posterImg);
-            
-            let posterSrc = '';
-            if (posterImg) {
-                // Получаем абсолютный путь к изображению
-                posterSrc = new URL(posterImg.src, window.location.href).href;
-                console.log('Абсолютный путь к постеру:', posterSrc);
-            }
+            const poster = posterImg ? new URL(posterImg.src, window.location.href).href : '';
 
-            // Создаем URL с параметрами
+            // Создаем URL с правильными параметрами
             const params = new URLSearchParams({
                 title: title,
                 studio: studio,
-                info: info,
+                type: type,  // Передаем тип отдельно
+                episodes: episodes,  // Передаем количество эпизодов отдельно
                 description: description,
                 rating: rating,
                 genres: genres,
                 status: status,
-                video: videoSrc,
-                poster: posterSrc
+                videoSrc: videoSrc,
+                poster: poster
             });
 
-            console.log('Параметры URL:', params.toString());
-            
             // Переходим на страницу плеера
             window.location.href = `player.html?${params.toString()}`;
         });

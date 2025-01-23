@@ -485,10 +485,7 @@ nav ul li a:hover::before {
 
 .tooltip {
     display: none;
-    position: absolute; 
-    top: 50%; 
-    left: 105%; 
-    transform: translateY(-50%); 
+    position: absolute;
     background-color: #f9f9f9;
     color: #333;
     padding: 20px;
@@ -499,9 +496,10 @@ nav ul li a:hover::before {
     transition: all 0.3s ease;
     font-size: 14px;
 }
+
 .anime-card:hover .tooltip {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .tooltip-header {
@@ -511,6 +509,26 @@ nav ul li a:hover::before {
     font-size: 16px;
     margin-bottom: 10px;
 }
+
+/* Темная тема для тултипов */
+.dark-theme .tooltip {
+    background: #1e1e1e;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Адаптивность для тултипов */
+@media (max-width: 768px) {
+    .tooltip {
+        width: 280px;
+        font-size: 12px;
+    }
+    
+    .tooltip-header {
+        font-size: 14px;
+    }
+}
+
 .tooltip.tooltip-left {
     left: auto;
     right: 100%;
@@ -532,7 +550,6 @@ anime-card:hover .tooltip.tooltip-left {
 }
 
 .tags {
-    margin-top: 10px;
     display: flex;
     flex-direction: row;
 }
@@ -553,7 +570,6 @@ anime-card:hover .tooltip.tooltip-left {
 }
 
 .rating {
-    margin-left: 10px;
     font-size: 14px;
 }
 

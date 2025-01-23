@@ -137,6 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = card.querySelector('.anime-card-title').textContent;
             const studio = card.querySelector('.studio').textContent;
             const info = card.querySelector('.info').textContent;
+            
+            // Разбираем строку info на тип и количество эпизодов, используя точный символ разделителя
+            const [type, episodesText] = info.split('•').map(text => text.trim());
+            const episodes = parseInt(episodesText?.match(/\d+/)?.[0]) || 1;
+            
             const description = card.querySelector('.catalog-description').textContent;
             const rating = card.querySelector('.rating-value').textContent;
             const tags = Array.from(card.querySelectorAll('.tag'))
@@ -144,25 +149,101 @@ document.addEventListener('DOMContentLoaded', () => {
                 .join(',');
             const status = card.querySelector('.tooltip-header span').textContent;
             const videoSrc = card.querySelector('video source').getAttribute('src');
-            // Получаем полный путь к изображению
             const posterImg = card.querySelector('img');
-            const posterSrc = posterImg ? new URL(posterImg.src, window.location.href).href : '';
+            const poster = posterImg ? new URL(posterImg.src, window.location.href).href : '';
 
-            // Создаем URL с параметрами
+            // Создаем URL с правильными параметрами
             const params = new URLSearchParams({
                 title: title,
                 studio: studio,
-                info: info,
+                type: type,  // Передаем тип отдельно
+                episodes: episodes,  // Передаем количество эпизодов отдельно
                 description: description,
                 rating: rating,
-                tags: tags,
+                genres: tags,
                 status: status,
                 videoSrc: videoSrc,
-                posterSrc: posterSrc
+                poster: poster
             });
 
             // Переходим на страницу плеера
             window.location.href = `player.html?${params.toString()}`;
+        });
+    });
+});
+
+// Функция для позиционирования тултипа
+function positionTooltip(card) {
+    const tooltip = card.querySelector('.tooltip');
+    if (!tooltip) return;
+
+    // Получаем размеры и позиции
+    const cardRect = card.getBoundingClientRect();
+    const tooltipWidth = 350; // Фиксированная ширина тултипа
+    const windowWidth = document.documentElement.clientWidth;
+    const scrollX = window.scrollX;
+
+    // Вычисляем абсолютную позицию карточки относительно документа
+    const cardLeft = cardRect.left + scrollX;
+    const cardRight = cardRect.right + scrollX;
+
+    // Сбрасываем предыдущие стили
+    tooltip.style.left = '';
+    tooltip.style.right = '';
+    tooltip.style.transform = 'translateY(-50%)';
+    tooltip.style.top = '50%';
+    tooltip.style.marginTop = '';
+
+    // Проверяем, поместится ли тултип справа от карточки
+    if (cardRight + tooltipWidth + 20 <= windowWidth) {
+        // Если справа достаточно места
+        tooltip.style.left = '105%';
+        tooltip.style.right = 'auto';
+    }
+    // Проверяем, поместится ли тултип слева от карточки
+    else if (cardLeft - tooltipWidth - 20 >= 0) {
+        // Если слева достаточно места
+        tooltip.style.left = 'auto';
+        tooltip.style.right = '105%';
+    }
+    // Если нет места ни справа, ни слева
+    else {
+        // Показываем снизу
+        tooltip.style.left = '50%';
+        tooltip.style.right = 'auto';
+        tooltip.style.top = '100%';
+        tooltip.style.transform = 'translateX(-50%)';
+        tooltip.style.marginTop = '10px';
+    }
+}
+
+// Добавляем обработчики для карточек
+document.addEventListener('DOMContentLoaded', () => {
+    const animeCards = document.querySelectorAll('.anime-card');
+    
+    animeCards.forEach(card => {
+        // При наведении
+        card.addEventListener('mouseenter', () => {
+            requestAnimationFrame(() => positionTooltip(card));
+        });
+        
+        // При движении мыши внутри карточки (для плавного обновления)
+        card.addEventListener('mousemove', () => {
+            requestAnimationFrame(() => positionTooltip(card));
+        });
+        
+        // Обработка изменения размера окна
+        window.addEventListener('resize', () => {
+            if (card.matches(':hover')) {
+                requestAnimationFrame(() => positionTooltip(card));
+            }
+        });
+
+        // Обработка прокрутки страницы
+        window.addEventListener('scroll', () => {
+            if (card.matches(':hover')) {
+                requestAnimationFrame(() => positionTooltip(card));
+            }
         });
     });
 });

@@ -14,8 +14,8 @@
     <header>
         <div class="header-content">
             <div class="logo">
-                <img src="/src/img/logo.svg" alt="Логотип">
-                Anika
+                <a href="index.html"><img src="/src/img/logo.svg" alt="Логотип"></a>
+                <a href="index.html" style="all:unset; cursor: pointer;">Anika</a>
             </div>
             <div class="search-container">
                 <input type="text" placeholder="Поиск аниме..." class="search-input">
@@ -62,64 +62,170 @@
         <div class="content-container">
             <div class="anime-details">
                 <div class="anime-poster">
-                    <img src="src/img/tokyo.jpg" alt="Tokyo Ghoul" class="poster-image">
+                    <img src="" alt="" class="poster-image">
+                </div>
+                <div class="anime-info">
+                    <h1 class="anime-title"></h1>
+                    <div class="anime-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Тип:</span>
+                            <span class="anime-type"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Статус:</span>
+                            <span class="anime-status"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Студия:</span>
+                            <span class="anime-studio"></span>
+                        </div>
+                    </div>
+                    <div class="rating-section">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span class="rating-value"></span>
+                        </div>
+                    </div>
+                    <div class="anime-genres"></div>
+                    <div class="authors-section">
+                        <h2>Авторы</h2>
+                        <div class="authors-list">
+                            <div class="author">
+                                <img src="src/img/author1.jpg" alt="Автор 1" class="author-avatar">
+                            </div>
+                            <div class="author">
+                                <img src="src/img/author2.jpg" alt="Автор 2" class="author-avatar">
+                            </div>
+                            <div class="author">
+                                <img src="src/img/author3.jpg" alt="Автор 3" class="author-avatar">
+                            </div>
+                            <div class="author">
+                                <div class="author-more">+2</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="anime-description"></div>
                 </div>
             </div>
 
-            <div class="video-info">
-                <h1 class="anime-title">Tokyo Ghoul</h1>
-                <div class="episode-info">
-                    <span class="current-episode">Серия 1</span>
-                    <span class="episode-title">Трагедия</span>
-                </div>
-                <div class="rating-section">
-                    <div class="rating">
-                        <span class="rating-value">4.0</span>
-                    </div>
-                    <div class="tags">
-                    </div>
-                </div>
-                <div class="control-buttons">
-                    <button class="control-btn watching">
-                        <i class="fas fa-play"></i>
-                        Смотреть
-                    </button>
-                    <button class="control-btn review">
-                        <i class="fas fa-star"></i>
-                        Отзыв
-                    </button>
-                    <button class="control-btn share">
-                        <i class="fas fa-share"></i>
-                        Поделиться
-                    </button>
-                </div>
-                <div class="authors-section">
-                    <h2>Авторы</h2>
-                    <div class="authors-list">
-                        <div class="author">
-                            <img src="src/img/author1.jpg" alt="Автор 1" class="author-avatar">
-                        </div>
-                        <div class="author">
-                            <img src="src/img/author2.jpg" alt="Автор 2" class="author-avatar">
-                        </div>
-                        <div class="author">
-                            <img src="src/img/author3.jpg" alt="Автор 3" class="author-avatar">
-                        </div>
-                        <div class="author">
-                            <div class="author-more">+2</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="control-buttons">
+                <button class="control-btn watching">
+                    <i class="fas fa-play"></i>
+                    Смотреть
+                </button>
+                <button class="control-btn review">
+                    <i class="fas fa-star"></i>
+                    Отзыв
+                </button>
+                <button class="control-btn share">
+                    <i class="fas fa-share"></i>
+                    Поделиться
+                </button>
             </div>
         </div>
 
         <div class="player-container">
+            <div class="episode-info">
+                <span class="current-episode">Серия 1</span>
+                <span class="episode-title"></span>
+            </div>
             <div class="player-wrapper">
                 <div class="video-player">
                     <video id="anime-player" controls>
                         <source src="" type="video/mp4">
                         Ваш браузер не поддерживает видео.
                     </video>
+                </div>
+            </div>
+            <div class="episode-controls">
+                <button class="episode-nav prev-episode" aria-label="Предыдущий эпизод">
+                    <i class="fas fa-step-backward"></i>
+                    <span>Предыдущий эпизод</span>
+                </button>
+                
+                <div class="episode-info">
+                    <button class="episode-list-toggle">
+                        <i class="fas fa-list"></i>
+                        Список эпизодов
+                    </button>
+                    <div class="episode-list">
+                        <div class="episode-list-header">
+                            <h3>Список эпизодов</h3>
+                            <button class="close-list">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="episodes-grid">
+                            <!-- Эпизоды будут добавляться через JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="episode-nav next-episode" aria-label="Следующий эпизод">
+                    <span>Следующий эпизод</span>
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+            
+            <div class="episode-list-overlay"></div>
+        </div>
+        
+        <div class="comments-section">
+            <div class="comments-header">
+                <div class="comments-nav">
+                    <div class="dropdown">
+                        <button class="control-btn settings-toggle">
+                            <i class="fas fa-cog"></i>
+                            Настройки
+                        </button>
+                        <div class="dropdown-menu settings-menu">
+                            <button class="settings-button" id="hide-spoilers">
+                                <i class="fas fa-eye-slash icon-default"></i>
+                                <i class="fas fa-eye icon-active"></i>
+                                <span>Скрывать спойлеры к новым сериям</span>
+                            </button>
+                            <button class="settings-button" id="notify-replies">
+                                <i class="fas fa-bell-slash icon-default"></i>
+                                <i class="fas fa-bell icon-active"></i>
+                                <span>Уведомлять об ответах на комментарии</span>
+                            </button>
+                            <button class="settings-button" id="hide-low-rating">
+                                <i class="fas fa-filter icon-default"></i>
+                                <i class="fas fa-filter-circle-xmark icon-active"></i>
+                                <span>Скрывать комментарии с низким рейтингом</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comment-form">
+                <textarea class="comment-input" placeholder="Написать комментарий..."></textarea>
+            </div>
+            
+            <div class="comments-list">
+                <div class="comment">
+                    <div class="comment-header">
+                        <img src="" alt="User Avatar" class="comment-avatar">
+                        <div class="comment-info">
+                            <div class="comment-author">Manga Mates (^～^)</div>
+                            <div class="comment-date">2 месяца назад</div>
+                        </div>
+                        <div class="comment-rating">
+                            <button class="rating-button up-vote">↑</button>
+                            <span class="rating-up">38</span>
+                            <button class="rating-button down-vote">↓</button>
+                        </div>
+                    </div>
+                    <div class="comment-content">
+                        Я соло-переводчик и вообще с мангой впервые работаю, главы как из пулемета строчить не смогу, так что не обессудьте))
+                        У меня помимо этого есть осн.работа. Так что по возможности и в свободное время постараюсь радовать Вас главушками.
+                        Надеюсь на Ваше понимание и Всем приятного чтения! :3
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-action">ответить</button>
+                        <button class="comment-action">жалоба</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -131,23 +237,22 @@
                 <img src="src/img/logo.svg" alt="Anika Logo">
                 Anika
             </div>
-            <div class="footer-links">
-                <nav>
-                    <ul>
-                        <li><a href="index.html#anons">Главная</a></li>
-                        <li><a href="index.html#season">Аниме сезона</a></li>
-                        <li><a href="index.html#catalog">Каталог</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="footer-social">
-                <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
-                <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-            </div>
-            <div class="footer-copyright">
-                &copy; 2024 Anika. Все права защищены.
-            </div>
+        <div class="footer-links">
+            <nav>
+                <ul>
+                    <li><a href="#anons">Главная</a></li>
+                    <li><a href="#season">Аниме сезона</a></li>
+                    <li><a href="#catalog">Каталог</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-social">
+            <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+            <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2024 Anika. Все права защищены.
         </div>
     </footer>
 </body>

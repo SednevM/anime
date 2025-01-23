@@ -175,11 +175,14 @@ nav ul li a:hover::before {
     top: 50px;
     width: 200px;
     background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     animation: fadeIn 0.3s;
+}
+
+.account_dropdown.active {
+    display: block;
 }
 
 @keyframes fadeIn {
@@ -193,15 +196,108 @@ nav ul li a:hover::before {
     }
 }
 
-.profile_button:hover + .account_dropdown,
-.account_dropdown:hover {
-    display: block;
-}
-
 .inside_account {
     padding: 10px;
 }
 
+.account-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.account-item:hover {
+    background-color: rgba(255, 61, 113, 0.1);
+    border-radius: 8px;
+}
+
+.account-item i {
+    margin-right: 12px;
+    color: #ff3d71;
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-item button {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+}
+
+.account-item button:hover {
+    color: #ff3d71;
+}
+
+/* Светлая тема */
+.account_dropdown {
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+.account-item {
+    color: #333;
+}
+
+.account-item button {
+    color: #333;
+}
+
+.account-item:hover,
+.account-item.active {
+    background-color: rgba(255, 61, 113, 0.1);
+    border-radius: 8px;
+}
+
+.account-item button:hover,
+.account-item.active button {
+    color: #ff3d71;
+}
+
+.account-item i {
+    color: #ff3d71;
+}
+
+/* Темная тема */
+.dark-theme .account_dropdown {
+    background: #1e1e1e;
+    border: 1px solid rgba(255, 61, 113, 0.2);
+}
+
+.dark-theme .account-item {
+    color: #fff;
+}
+
+.dark-theme .account-item button {
+    color: #fff;
+}
+
+.dark-theme .account-item:hover,
+.dark-theme .account-item.active {
+    background-color: rgba(255, 61, 113, 0.1);
+}
+
+.dark-theme .account-item button:hover,
+.dark-theme .account-item.active button {
+    color: #ff3d71;
+}
+
+.dark-theme .account-item i {
+    color: #ff3d71;
+}
+
+/* Удаляем старые стили */
 .inside_account a {
     display: flex;
     align-items: center;
@@ -218,12 +314,7 @@ nav ul li a:hover::before {
 
 .inside_account i {
     margin-right: 10px;
-    color: #ff0000;
-}
-
-.dark-theme .account_dropdown {
-    background-color: #1e1e1e;
-    border-color: #404040;
+    color: #ff3d71;
 }
 
 .dark-theme .inside_account a {
@@ -235,56 +326,60 @@ nav ul li a:hover::before {
 }
 
 .dark-theme .inside_account i {
-    color: #ff0000;
+    color: #ff3d71;
 }
 
-.fas {
-    display: flex; 
-    align-items: center;  
-    width: 24px; 
-    height: 24px; 
-    font-size: 20px;
-  }
-
-.account-item {
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    transition: background-color 0.2s;
-}
-
-.account-item:hover {
-    background-color: #f0f0f0;
-    border-radius: 8px;
-}
-
-.account-item:hover button {
-    color: #ff0000;
-}
-
-.account-item i {
+.theme-switcher i {
     margin-right: 10px;
-}
-
-.account-icon {
     width: 24px;
     height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 20px;
+    color: #ff3d71;
 }
 
-.account-item button {
-    background: none;
-    border: none;
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
     color: #333;
-    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    border-radius: 8px;
     cursor: pointer;
-    padding: 0;
-    margin: 0;
-    text-align: left;
+    border: none;
+    background: none;
     width: 100%;
-    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+.theme-toggle i {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #ff3d71;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 61, 113, 0.1);
+}
+
+.dark-theme .theme-toggle {
+    color: #ffffff;
+}
+
+.dark-theme .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .theme-toggle i {
+    color: #ff3d71;
 }
 
 main {
@@ -584,7 +679,7 @@ main {
 
 .fa-sun::before {
     content: "\f185";
-    color: currentColor;
+    color: #ff3d71;
 }
 
 .theme-option:hover,
@@ -902,11 +997,23 @@ body.dark-theme {
     border-color: #fff;
 }
 
+@media screen and (max-width: 768px) {
+    .settings-container {
+        padding: 10px;
+    }
+    
+    .settings-section {
+        margin-bottom: 20px;
+    }
+}
+
+/* Стили для футера */
 footer {
     background-color: #ffffff;
     color: #ff0000;
     padding: 20px 0;
     margin-top: auto;
+    width: 100%;
 }
 
 .footer-container {
@@ -937,11 +1044,6 @@ footer {
     list-style: none;
 }
 
-.footer-links a {
-    color: #ff0000;
-    text-decoration: none;
-}
-
 .footer-social {
     display: flex;
     gap: 15px;
@@ -950,6 +1052,11 @@ footer {
 .footer-social a {
     color: #ff0000;
     font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    color: #cc0000;
 }
 
 .footer-copyright {
@@ -959,158 +1066,259 @@ footer {
     color: #ff0000;
 }
 
-.dark-theme header {
-    background-color: #1e1e1e;
-    color: #ff0000;
+/* Темная тема для футера */
+.dark-theme footer {
+    background: rgba(20, 20, 35, 0.95);
+    border-top: 1px solid rgba(255, 61, 113, 0.2);
 }
-/* Responsive styles */
+
+.dark-theme .footer-social a {
+    color: #ff3d71;
+}
+
+.dark-theme .footer-social a:hover {
+    color: #ff71a9;
+}
+
+.dark-theme .footer-copyright {
+    color: #ff3d71;
+}
+
 @media (max-width: 768px) {
-    .settings-container {
-        padding: 20px;
-        margin: 0;
-    }
-
-    .security-settings {
+    .footer-container {
         flex-direction: column;
+        gap: 20px;
+        text-align: center;
     }
 
-    .settings-actions {
-        flex-direction: column;
+    .footer-links ul {
+        justify-content: center;
     }
 
-    .save-settings-btn,
-    .cancel-btn {
-        width: 100%;
+    .footer-social {
+        justify-content: center;
     }
+}
 
-    .search-container {
-        position: static;
-        transform: none;
-        margin: 0 10px;
-    }
+/* Светлая тема */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    color: #333;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.settings-container {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 61, 113, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 61, 113, 0.2);
+}
+
+.settings-button {
+    background: rgba(255, 255, 255, 0.9);
+    color: #ff3d71;
+    border: 1px solid rgba(255, 61, 113, 0.3);
+}
+
+/* Темная тема */
+.dark-theme {
+    background-color: #0a0b1a;
+    color: #fff;
+}
+
+.dark-theme header {
+    background: rgba(20, 20, 35, 0.95);
+    border-bottom: 1px solid rgba(255, 61, 113, 0.2);
+}
+
+.dark-theme .settings-container {
+    background: linear-gradient(135deg, rgba(255, 61, 113, 0.1), rgba(255, 61, 113, 0.05));
+    box-shadow: 0 8px 32px rgba(255, 61, 113, 0.15);
+}
+
+.dark-theme .settings-section {
+    background: rgba(20, 20, 35, 0.8);
+    border: 1px solid rgba(255, 61, 113, 0.3);
+}
+
+.dark-theme .settings-button {
+    background: rgba(20, 20, 35, 0.8);
+    color: #ff3d71;
+    border: 1px solid rgba(255, 61, 113, 0.3);
+}
+
+.dark-theme .search-input {
+    background-color: #404040;
+    color: #ffffff;
 }
 
 .dark-theme .account_dropdown {
-    background-color: #ffffff;
-}
-
-.dark-theme .inside_account {
-    background-color: #ffffff;
-}
-
-.dark-theme .account-item {
-    color: #ffffff;
+    background: rgba(20, 20, 35, 0.95);
+    border: 1px solid rgba(255, 61, 113, 0.2);
 }
 
 .dark-theme .account-item button {
-    color: #000000;
+    color: #fff;
 }
 
-.dark-theme .account-item button:hover {
-    color: #ff0000;
+.dark-theme .account-item:hover {
+    background: rgba(255, 61, 113, 0.1);
 }
 
-.dark-theme .account-icon {
-    color: #ff0000;
-}
-
-.fa-sun::before {
-    content: "\f185";
-    color: #ff0000;
-}
-
-
-.theme-switcher i {
-    margin-right: 10px;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-}
-
-.theme-toggle {
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    color: #333;
-    text-decoration: none;
-    transition: background-color 0.2s;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    background: none;
-    width: 100%;
-    font-size: 16px;
-}
-
-.theme-toggle i {
-    margin-right: 10px;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: #ff0000;
-}
-
-.theme-toggle:hover {
-    background-color: #f0f0f0;
-}
-
-.dark-theme .theme-toggle {
-    color: #ffffff;
-}
-
-.dark-theme .theme-toggle:hover {
-    background-color: #2a2a2a;
-}
-
-.dark-theme .theme-toggle i {
-    color: #ff0000;
-}
-
-/* Добавляем новые анимации */
-@keyframes neonPulse {
-    0% { box-shadow: 0 0 5px #ff3d71, 0 0 10px #ff3d71, 0 0 20px #ff3d71; }
-    50% { box-shadow: 0 0 10px #ff3d71, 0 0 20px #ff3d71, 0 0 30px #ff3d71; }
-    100% { box-shadow: 0 0 5px #ff3d71, 0 0 10px #ff3d71, 0 0 20px #ff3d71; }
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes floatingAvatar {
-    0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
-    100% { transform: translateY(0px) rotate(0deg); }
-}
-
+/* Анимации для обеих тем */
 @keyframes shine {
-    0% { transform: translateX(-100%) rotate(45deg); }
-    100% { transform: translateX(100%) rotate(45deg); }
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
 }
 
-.theme-option .fa-sun,
-.theme-option .fa-moon {
-    color: #ff3d71;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+    .settings-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .settings-section {
+        width: 100%;
+    }
+
+    .settings-group {
+        flex-direction: column;
+    }
+
+    .settings-button {
+        width: 100%;
+    }
+}
+
+/* Общие стили для элементов настроек */
+.settings-item {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 61, 113, 0.2);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.theme-option:hover .fa-sun,
-.theme-option:hover .fa-moon,
-.theme-option.active .fa-sun,
-.theme-option.active .fa-moon {
-    color: #ffffff;
+.settings-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 61, 113, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: 0.5s;
 }
 
-.theme-option:hover,
-.theme-option.active {
-    background: linear-gradient(45deg, #ff3d71, #3f5efb);
-    border-color: transparent;
+.settings-item:hover::before {
+    animation: shine 0.5s;
+}
+
+.settings-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(255, 61, 113, 0.3);
+    border-color: #ff3d71;
+}
+
+/* Темная тема для элементов настроек */
+.dark-theme .settings-item {
+    background: rgba(20, 20, 35, 0.8);
+    border: 1px solid rgba(255, 61, 113, 0.3);
+}
+
+.dark-theme .settings-item:hover {
+    background: rgba(255, 61, 113, 0.1);
+}
+
+/* Стили для переключателей и инпутов */
+.settings-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.settings-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.settings-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.settings-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .settings-slider {
+    background-color: #ff3d71;
+}
+
+input:checked + .settings-slider:before {
+    transform: translateX(26px);
+}
+
+/* Темная тема для переключателей */
+.dark-theme .settings-slider {
+    background-color: #404040;
+}
+
+.dark-theme input:checked + .settings-slider {
+    background-color: #ff3d71;
+}
+
+.dark-theme .settings-slider:before {
+    background-color: #ffffff;
 }
